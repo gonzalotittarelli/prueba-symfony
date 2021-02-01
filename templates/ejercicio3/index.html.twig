@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ejercicio3 {% endblock %}
+
+{% block body %}
+
+    {% for item in 1..20 %}
+        <div id="contenedor">
+            <h1>{{ 'welcome' | upper }}</h1>
+        </div>
+    {% endfor %}
+
+    {% if var == 'pepe' %}
+        <p>La variable var se llama pepe</p>    
+    {% else %}
+        <p>La variable var no se llama pepe, se llama {{ var }}</p>    
+    {% endif %}
+
+{% endblock %}
