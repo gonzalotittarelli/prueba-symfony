@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+    
+    <main role="main" class="inner cover text-center">
+        <h1 class="cover-heading">Ejercicio 5 - Doctrine</h1>   
+        <div class="col-md-12">
+            {% if exito is not empty %}
+                <div class="alert alert-success" role="alert">
+                   {{ exito }}
+                </div>
+            {% endif %}
+            {% if error is not empty %}
+                <div class="alert alert-danger" role="alert">
+                   {{ error }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-12">
+            {% if usuario is not empty %}
+                <div class="alert alert-success" role="alert">
+                   Se encontro al usuario: {{ usuario.nombre }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-12">     
+            <p class="lead">
+                <a href="{{ path('generar') }}" class="btn btn-lg btn-secondary">Generar</a>
+                <a href="{{ path('consultar') }}" class="btn btn-lg btn-secondary">Consultar</a>
+            </p>
+        </div>        
+    </main>
+{% endblock %}
