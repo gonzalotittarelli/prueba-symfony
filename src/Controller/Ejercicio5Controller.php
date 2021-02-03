@@ -45,10 +45,15 @@ class Ejercicio5Controller extends AbstractController
      */
     public function consultar(): Response
     {
-        $repositorio = $this->getDoctrine()->getRepository(Usuario::class);
-        $usuario = $repositorio->findIdBy(1);
+        $repositorio_usuario = $this->getDoctrine()->getRepository(Usuario::class);
+        $usuario = $repositorio_usuario->findById(1);
+        $posteos = $repositorio_usuario->countPosts(1); 
+        $repositorio_posts = $this->getDoctrine()->getRepository(Post::class);
+        $posteos_titulo = $repositorio_posts->findByTitulo('Titulo');
+        dd($posteos_titulo);
         return $this->render('ejercicio5/index.html.twig', [
             'usuario' => $usuario,
+            'posteos' => $posteos,
         ]);
     }
 }

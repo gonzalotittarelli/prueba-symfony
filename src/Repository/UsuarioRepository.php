@@ -22,11 +22,11 @@ class UsuarioRepository extends ServiceEntityRepository
     /**
      * @return Usuario a partir del id
     */    
-    public function findIdBy($id)
+    public function findById($id)
     {
-        $query = $this->createQuery('SELECT u FROM Usuario u WHERE u.id = :id');
-        $query->setParameter('id', 'id');
-        return $query->getResult();
+        $query = $this->getEntityManager()->createQuery('SELECT u FROM App:Usuario u WHERE u.id = :id');
+        $query->setParameter('id', $id);
+        return $query->getOneOrNullResult();
     }
 
     /**
@@ -34,8 +34,9 @@ class UsuarioRepository extends ServiceEntityRepository
     */    
     public function countPosts($id)
     {
-        $query = $this->createQuery('SELECT COUNT(DISTINCT p.id) FROM Usuario u JOIN u.posts p');
-        return $query->getResult();
+        $query = $this->getEntityManager()->createQuery('SELECT COUNT(DISTINCT p.id) FROM App:Usuario u JOIN u.posts p WHERE u.id = :id');
+        $query->setParameter('id', $id);
+        return $query->getSingleScalarResult();
     }
     
 }

@@ -7,23 +7,27 @@
     <main role="main" class="inner cover text-center">
         <h1 class="cover-heading">Ejercicio 5 - Doctrine</h1>   
         <div class="col-md-12">
-            {% if exito is not empty %}
+            {% if exito is defined %}
                 <div class="alert alert-success" role="alert">
                    {{ exito }}
                 </div>
             {% endif %}
-            {% if error is not empty %}
+            {% if error is defined %}
                 <div class="alert alert-danger" role="alert">
                    {{ error }}
                 </div>
             {% endif %}
         </div>
         <div class="col-md-12">
-            {% if usuario is not empty %}
+            {% if usuario is defined and usuario is not null%}
                 <div class="alert alert-success" role="alert">
-                   Se encontro al usuario: {{ usuario.nombre }}
+                   Se encontro al usuario: {{ usuario.apellido | capitalize }} , {{ usuario.nombre | capitalize}} 
                 </div>
+                {% if posteos is defined and posteos is not null%}
+                    <p> La cantidad de posteos del usuario es: {{ posteos }} </p>
+                {% endif %}    
             {% endif %}
+            
         </div>
         <div class="col-md-12">     
             <p class="lead">
