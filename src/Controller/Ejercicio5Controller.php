@@ -50,7 +50,6 @@ class Ejercicio5Controller extends AbstractController
         $posteos = $repositorio_usuario->countPosts(1); 
         $repositorio_posts = $this->getDoctrine()->getRepository(Post::class);
         $posteos_titulo = $repositorio_posts->findByTitulo('Titulo');
-        dd($posteos_titulo);
         return $this->render('ejercicio5/index.html.twig', [
             'usuario' => $usuario,
             'posteos' => $posteos,
