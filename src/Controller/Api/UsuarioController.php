@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Controller\Api;
+
 use App\Entity\Usuario;
 use App\Form\Type\UsuarioType;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
 

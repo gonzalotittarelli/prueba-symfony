@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="usuario")
  * @ORM\Entity(repositoryClass="App\Repository\UsuarioRepository")
  */
-class Usuario
+class Usuario implements JWTUserInterface
 {
     /**
      * @ORM\Id
@@ -58,7 +58,7 @@ class Usuario
         $this->password = $password;
         $this->posts = new ArrayCollection();
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
