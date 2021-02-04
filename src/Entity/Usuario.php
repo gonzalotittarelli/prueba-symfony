@@ -42,11 +42,16 @@ class Usuario
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="usuario", cascade={"persist", "remove"})
+     * 
+     * @ORM\ManyToMany(targetEntity="Post", cascade={"persist", "remove"}, fetch="LAZY")
+     * @ORM\JoinTable(name="usuarios_posteos",
+     *      joinColumns={@ORM\JoinColumn(name="usuario_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id", unique=true)}
+     * )
      */
     private $posts;
-
-    public function __construct($nombre, $apellido, $email, $password){
+    
+    public function __construct($nombre=null, $apellido=null, $email=null, $password=null){
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->email = $email;
@@ -118,20 +123,14 @@ class Usuario
     public function addPost(Post $post): self
     {
         if (!$this->posts->contains($post)) {
-            $this->posts[] = $post;
-            $post->setUsuario($this);
+            $this->posts[] = $post;            
         }
         return $this;
     }
 
     public function removePost(Post $post): self
     {
-        if ($this->posts->removeElement($post)) {
-            // set the owning side to null (unless already changed)
-            if ($post->getUsuario() === $this) {
-                $post->setUsuario(null);
-            }
-        }
+        $this->posts->removeElement($post);       
         return $this;
     }
 

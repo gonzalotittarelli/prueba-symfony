@@ -46,8 +46,8 @@ class Ejercicio5Controller extends AbstractController
     public function consultar(): Response
     {
         $repositorio_usuario = $this->getDoctrine()->getRepository(Usuario::class);
-        $usuario = $repositorio_usuario->findById(1);
-        $posteos = $repositorio_usuario->countPosts(1); 
+        $usuario = $repositorio_usuario->findById(2);
+        $posteos = $repositorio_usuario->countPosts(2);
         $repositorio_posts = $this->getDoctrine()->getRepository(Post::class);
         $posteos_titulo = $repositorio_posts->findByTitulo('Titulo');
         return $this->render('ejercicio5/index.html.twig', [

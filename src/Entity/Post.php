@@ -26,12 +26,6 @@ class Post
      */
     private $descripcion;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="posts")
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
-     */
-    private $usuario;
-
     public function __construct($titulo, $descripcion){
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;
@@ -62,18 +56,6 @@ class Post
     public function setDescripcion(string $descripcion): self
     {
         $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    public function getUsuario(): ?Usuario
-    {
-        return $this->usuario;
-    }
-
-    public function setUsuario(?Usuario $usuario): self
-    {
-        $this->usuario = $usuario;
 
         return $this;
     }
